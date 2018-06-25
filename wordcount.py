@@ -14,8 +14,12 @@ def count_words(filename):
 
         word_count = Counter(words)
 
-    for word, number in word_count.items():
+    for word, number in sorted(word_count.items(), key=lambda pair: (-pair[1], pair[0])):
         print("{} {}".format(word, number))
+
+    # items = list(word_count.items())
+    # items.sort()
+    # items.sort(key=lambda pair: pair[1], reverse=True)
 
 
 count_words(sys.argv[1])
