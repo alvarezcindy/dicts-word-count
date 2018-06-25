@@ -1,3 +1,6 @@
+import sys
+
+
 def count_words(filename):
 
     word_count = {}
@@ -6,11 +9,12 @@ def count_words(filename):
         for line in text:
             words = line.split()
             for word in words:
-                word_count[word] = word_count.get(word, 0) + 1
+                if word[-1] in "_.,?!;:\'\"":
+                    word = word[:-1]
+                word_count[word.lower()] = word_count.get(word, 0) + 1
 
     for word, number in word_count.items():
         print("{} {}".format(word, number))
 
 
-count_words("test.txt")
-# count_words("twain.txt")
+count_words(sys.argv[1])
